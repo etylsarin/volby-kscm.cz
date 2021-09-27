@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "volby-kscm.cz",
+    siteUrl: "https://www.volby-kscm.cz",
+    title: "Komunisti z kola ven",
   },
   plugins: [
     "gatsby-plugin-sass",
