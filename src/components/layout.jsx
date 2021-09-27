@@ -8,7 +8,7 @@ const Layout = ({ pageContext, children }) => (
       <meta charSet="utf-8" />
       <title>{pageContext.frontmatter.title}</title>
       <meta name="description" content={pageContext.frontmatter.description} />
-      <meta name="google-site-verification" content="MUOrpoypPDrHGG_hngCAq-EOeOFahJFYH6LwFkVPm-M" />
+      <meta name="google-site-verification" content="4PoeakCsKGJN4qt1qkXB08sbIh1HgBBw82UXR-TPwRc" />
     </Helmet>
     <main>
       <ul>
