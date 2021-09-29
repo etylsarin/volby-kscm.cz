@@ -1,0 +1,225 @@
+:root {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-size: 18px;
+  font-family: Georgia;
+  line-height: 1.5;
+  color: #333;
+  min-width: 320px;
+}
+
+.menu > ul > li > a,
+.section > h1,
+.section > h2 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  color: #fff;
+}
+
+.menu {
+  background: crimson;
+
+  > ul {
+    list-style: none;
+    padding: 0.5em 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > li {
+      > a {
+        font-size: 17px;
+        text-transform: uppercase;
+        text-decoration: none;
+        display: inline-block;
+        padding: 0.5em 1em;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.page {
+  padding-bottom: 64px;
+}
+
+.section {
+  padding-top: 270px;
+
+  > h1,
+  > h2,
+  > p {
+    max-width: 880px;
+    margin: 0.5em auto;
+    padding: 0 40px;
+  }
+
+  > h1,
+  > p {
+    margin-bottom: 2em;
+  }
+
+  > h1 {
+    font-size: 44px;
+    line-height: 1.2;
+  }
+
+  > h2 {
+    color: #000;
+  }
+
+  > h1 + p:first-letter {
+    color: #000;
+    line-height: 0.8;
+    float: left;
+    font-family: "franklin-gothic-urw", sans-serif;
+    font-size: 3.5em;
+    font-weight: 900;
+    margin-top: 3px;
+    margin-right: 8px;
+  }
+}
+
+:global(.uvod) {
+  background: linear-gradient(
+        -180deg,
+        transparent 100px,
+        #000 400px,
+        #fff 400px
+      )
+      left top no-repeat,
+    url("../images/prazske-jaro-1968.jpeg") center -100px no-repeat;
+}
+
+:global(.ideologie) {
+  background: linear-gradient(
+        -180deg,
+        transparent 100px,
+        #000 400px,
+        #fff 400px
+      )
+      left top no-repeat,
+    url("../images/marx-lenin-stalin.jpeg") center -100px no-repeat;
+}
+
+:global(.komunismus-v-cesku) {
+  background: linear-gradient(
+        -180deg,
+        transparent 100px,
+        #000 400px,
+        #fff 400px
+      )
+      left top no-repeat,
+    url("../images/hranice-cssr.jpeg") center -100px no-repeat;
+}
+
+:global(.porevolucni-kscm) {
+  background: linear-gradient(
+        -180deg,
+        transparent 100px,
+        #000 400px,
+        #fff 400px
+      )
+      left top no-repeat,
+    url("../images/sametova-revoluce.jpeg") center -100px no-repeat;
+}
+
+:global(.predstavitele-kscm) {
+  background: linear-gradient(
+        -180deg,
+        transparent 100px,
+        #000 400px,
+        #fff 400px
+      )
+      left top no-repeat,
+    url("../images/vojtech-filip.jpeg") center -100px no-repeat;
+}
+
+@media (min-width: 1141px) {
+  .section {
+    background-size: 100%;
+  }
+}
+
+@media (max-width: 1140px) {
+  .section {
+    background-size: 120%;
+  }
+}
+
+@media (max-width: 950px) {
+  .section {
+    background-size: 140%;
+  }
+}
+
+@media (max-width: 810px) {
+  .section {
+    background-size: 160%;
+  }
+}
+
+@media (min-width: 768px) {
+  .menu > input,
+  .menu > label {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .menu {
+    position: fixed;
+
+    > input {
+      display: none;
+    }
+
+    > label {
+      display: block;
+      width: 32px;
+      height: 32px;
+      background: url("../images/menu.svg") center center no-repeat;
+    }
+
+    > ul {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    > input:checked ~ label {
+      background-image: url("../images//x.svg");
+    }
+
+    > input:checked ~ ul {
+      display: flex;
+    }
+  }
+
+  .section {
+    background-size: 1200px;
+    padding-top: 300px;
+
+    > h1 {
+      font-size: 32px;
+    }
+  }
+}
