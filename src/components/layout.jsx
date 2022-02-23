@@ -6,7 +6,7 @@ import clasNames from "classnames";
 import * as styles from "./layout.module.scss";
 
 const Layout = ({ pageContext, children }) => (
-  <>
+  <div className={styles.page}>
     <Helmet>
       <meta charSet="utf-8" />
       <title>{pageContext.frontmatter.title} | Komunisti z kola ven</title>
@@ -19,7 +19,7 @@ const Layout = ({ pageContext, children }) => (
           innerHTML: 'window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("config", "G-2DBHBVRPLQ");' 
         }]}
       />
-    <main className={styles.page} data-testid={pageContext.frontmatter.theme}>
+    <main className={styles.main} data-testid={pageContext.frontmatter.theme}>
       <div className={styles.menu}>
         <input type="checkbox" id="swith" />
         <label htmlFor="swith" />
@@ -35,7 +35,10 @@ const Layout = ({ pageContext, children }) => (
         {children}
       </section>
     </main>
-  </>
+    <footer className={styles.footer}>
+      <small>Podporujeme: <a href="https://www.nasdilejneztozakazou.cz/">Sdílejte, než to zakážou! pravá tvář Andreje Babiše</a> a <a href="https://www.petletzpet.cz/">Největší přešlapy současného prezidenta</a></small>
+    </footer>
+  </div>
 );
 
 export default Layout;
