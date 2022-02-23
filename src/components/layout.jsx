@@ -3,15 +3,14 @@ import { Helmet } from "react-helmet";
 import { Link } from "gatsby";
 import clasNames from "classnames";
 
-import * as styles from "./styles.module.scss";
+import * as styles from "./layout.module.scss";
 
 const Layout = ({ pageContext, children }) => (
   <>
     <Helmet>
       <meta charSet="utf-8" />
-      <title>{pageContext.frontmatter.title}</title>
+      <title>{pageContext.frontmatter.title} | Komunisti z kola ven</title>
       <meta name="description" content={pageContext.frontmatter.description} />
-      <meta name="google-site-verification" content="4PoeakCsKGJN4qt1qkXB08sbIh1HgBBw82UXR-TPwRc" />
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DBHBVRPLQ"></script>
     </Helmet>
     <Helmet
@@ -22,8 +21,8 @@ const Layout = ({ pageContext, children }) => (
       />
     <main className={styles.page} data-testid={pageContext.frontmatter.theme}>
       <div className={styles.menu}>
-      <input type="checkbox" id="swith" />
-      <label htmlFor="swith" />
+        <input type="checkbox" id="swith" />
+        <label htmlFor="swith" />
         <ul>
           <li><Link to="/">Úvod</Link></li>
           <li><Link to="/ideologie">Ideologie</Link></li>
