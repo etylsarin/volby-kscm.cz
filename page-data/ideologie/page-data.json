@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-pages-ideologie-mdx",
     "path": "/ideologie/",
-    "result": {"pageContext":{"frontmatter":{"title":"Ideologie | Komunisti z kola ven","description":"","theme":"ideologie"}}},
-    "staticQueryHashes": []}
+    "result": {"pageContext":{"frontmatter":{"title":"Ideologie","description":"","theme":"ideologie"}}},
+    "staticQueryHashes": ["3000541721"]}
