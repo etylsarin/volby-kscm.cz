@@ -1,5 +1,6 @@
-const pkg = require('./package.json');
-const DESC = 'KSČM je strana minulosti. Její představitelé mají na svědomí mnoho hříchů z předlistopadové i polistopadové éry.';
+const pkg = require("./package.json")
+const DESC =
+  "KSČM je strana minulosti. Její představitelé mají na svědomí mnoho hříchů z předlistopadové i polistopadové éry."
 
 module.exports = {
   siteMetadata: {
@@ -22,9 +23,9 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
-    'gatsby-plugin-sass',
+    "gatsby-plugin-sass",
     {
-      resolve: 'gatsby-plugin-svgr',
+      resolve: "gatsby-plugin-svgr",
       options: {
         svgo: false,
         ref: true,
@@ -49,42 +50,26 @@ module.exports = {
     },
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: require.resolve(`@nrwl/gatsby/plugins/nx-gatsby-ext-plugin`),
-      options: {
-        path: __dirname,
-      },
-    },
     `gatsby-plugin-sharp`,
     "gatsby-plugin-sitemap",
     `gatsby-plugin-offline`,
     {
       resolve: "gatsby-plugin-mdx",
       options: {
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout.tsx")
-        },
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 550,
-            }
+            },
           },
         ],
-        rehypePlugins: [
-          {
-            resolve: 'rehype-slug'
-          }
-        ]
-      }
+      },
     },
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [
-          'G-2DBHBVRPLQ'
-        ],
+        trackingIds: ["G-2DBHBVRPLQ"],
         gtagConfig: {
           anonymize_ip: true,
         },
@@ -94,4 +79,4 @@ module.exports = {
       },
     },
   ],
-};
+}
