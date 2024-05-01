@@ -73,7 +73,7 @@ export const PageLayout = ({ pageContext, children }) => {
           </section>
         </main>
         <footer className={styles.footer}>
-          <small>Podporujeme: <a href="https://www.nasdilejneztozakazou.cz/">Sdílejte, než to zakážou! pravá tvář Andreje Babiše</a> a <a href="https://www.petletzpet.cz/">Největší přešlapy současného prezidenta</a></small>
+          <small>Podporujeme: <a href="https://www.nasdilejneztozakazou.cz/">Sdílejte, než to zakážou! pravá tvář Andreje Babiše</a> a <a href="https://www.petletzpet.cz/">Největší přešlapy bývalého prezidenta</a></small>
         </footer>
       </div>
     </>
