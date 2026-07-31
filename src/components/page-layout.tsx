@@ -5,19 +5,24 @@ import clasNames from "classnames";
 
 import * as styles from "./page-layout.module.scss";
 
-export const PageLayout = ({ pageContext, children }) => {
+export const PageLayout = ({ pageContext, location, children }) => {
   const { site: { siteMetadata }} = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
           title
           description
+          siteUrl
         }
       }
     }
   `);
-  const TITLE = `${pageContext.frontmatter.title} | ${siteMetadata.title}`;
-  const DESC = pageContext.frontmatter.description || siteMetadata.description;  
+  const frontmatter = pageContext?.frontmatter || {};
+  const TITLE = frontmatter.title
+    ? `${frontmatter.title} | ${siteMetadata.title}`
+    : siteMetadata.title;
+  const DESC = frontmatter.description || siteMetadata.description;
+  const PAGE_URL = new URL(location?.pathname || "/", siteMetadata.siteUrl).href;
 
   return (
     <>
@@ -42,6 +47,18 @@ export const PageLayout = ({ pageContext, children }) => {
             content: `website`,
           },
           {
+            property: `og:url`,
+            content: PAGE_URL,
+          },
+          {
+            property: `og:site_name`,
+            content: siteMetadata.title,
+          },
+          {
+            property: `og:locale`,
+            content: `cs_CZ`,
+          },
+          {
             name: `twitter:card`,
             content: `summary`,
           },
@@ -54,21 +71,26 @@ export const PageLayout = ({ pageContext, children }) => {
             content: DESC,
           },
         ]}
+        link={[{ rel: `canonical`, href: PAGE_URL }]}
       />
       <div className={styles.page}>
         <main className={styles.main}>
-          <div className={styles.menu}>
+          <nav className={styles.menu}>
             <input type="checkbox" id="swith" />
-            <label htmlFor="swith" />
+            <label htmlFor="swith" aria-label="Menu" />
             <ul>
               <li><Link to="/">Úvod</Link></li>
               <li><Link to="/ideologie">Ideologie</Link></li>
-              <li><Link to="/komunismus-v-cesku">Komunismus v česku</Link></li>
+              <li><Link to="/komunismus-v-cesku">Komunismus v Česku</Link></li>
               <li><Link to="/porevolucni-kscm">Porevoluční KSČM</Link></li>
               <li><Link to="/predstavitele-kscm">Představitelé KSČM</Link></li>
             </ul>
-          </div>
-          <section className={clasNames(styles.section, pageContext.frontmatter.theme)}>
+          </nav>
+          <section
+            className={clasNames(styles.section, frontmatter.theme, {
+              [styles.sectionPlain]: !frontmatter.theme,
+            })}
+          >
             {children}
           </section>
         </main>
