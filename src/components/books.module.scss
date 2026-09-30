@@ -1,0 +1,196 @@
+// Book blocks in the site's style: crimson accents, Helvetica headings,
+// Georgia text, content column of 880px like the rest of the section.
+$sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+.cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 2 / 3;
+  background: #222;
+  color: #fff;
+  padding: 10% 10% 12%;
+  box-shadow: 5px 5px 0 crimson;
+  overflow: hidden;
+  font-family: $sans;
+
+  // Spine highlight.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 6%;
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.coverAuthor {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+}
+
+.coverTitle {
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+// "Knihy k tématu" at the bottom of a page.
+.pageBooks {
+  max-width: 880px;
+  margin: 3em auto 0;
+  padding: 16px 40px 0;
+
+  h2 {
+    font-family: $sans;
+    font-weight: 900;
+    font-size: 26px;
+    color: #000;
+    border-top: 4px solid crimson;
+    padding-top: 14px;
+    margin: 0 0 18px;
+  }
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px 32px;
+}
+
+a.item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 14px;
+  align-items: center;
+  text-decoration: none;
+  color: #222 !important;
+  font-size: 6px;
+
+  &:hover .itemTitle {
+    text-decoration: underline;
+  }
+}
+
+.itemTitle {
+  display: block;
+  font-family: $sans;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.itemMeta {
+  display: block;
+  font-size: 14px;
+  line-height: 1.3;
+  color: dimgray;
+}
+
+.disclosure {
+  font-size: 14px;
+  color: dimgray;
+  margin: 12px 0 0;
+}
+
+// Full list on /knihy/.
+.list {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.groupTitle {
+  font-family: $sans;
+  font-weight: 900;
+  font-size: 28px;
+  color: #000;
+  margin: 1.6em 0 0.4em;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 28px 0;
+  border-top: 1px solid gainsboro;
+
+  p {
+    margin: 0 0 0.7em;
+  }
+}
+
+a.coverLink {
+  display: block;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.title {
+  font-family: $sans;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 0 0 0.3em;
+
+  a {
+    color: #000 !important;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.meta {
+  font-size: 15px;
+  color: dimgray;
+}
+
+.pages {
+  font-size: 15px;
+}
+
+a.button {
+  display: inline-block;
+  margin-top: 4px;
+  background: crimson;
+  color: #fff !important;
+  font-family: $sans;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 0.5em 1em;
+
+  &:hover {
+    background: #a50e2d;
+  }
+}
+
+@media (max-width: 767px) {
+  .pageBooks,
+  .list {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .card {
+    grid-template-columns: 96px 1fr;
+    gap: 18px;
+  }
+
+  a.coverLink {
+    font-size: 9px;
+  }
+}

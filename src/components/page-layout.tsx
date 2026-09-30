@@ -1,7 +1,12 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql, Link } from "gatsby";
+import { MDXProvider } from "@mdx-js/react";
 import clasNames from "classnames";
+
+import { AffiliateSourceContext, pathToSid } from "./affiliate-link";
+import { BookLink, BookList, PageBooks } from "./books";
+import { RESOURCES } from "../data/resources";
 
 import * as styles from "./page-layout.module.scss";
 
@@ -13,6 +18,9 @@ const NOINDEX_PATHS = [
   "/404.html",
   "/offline-plugin-app-shell-fallback",
 ];
+
+// Components available in every MDX page without an import.
+const MDX_COMPONENTS = { BookLink, BookList };
 
 export const PageLayout = ({ pageContext, location, children }) => {
   const { site: { siteMetadata }} = useStaticQuery(graphql`
@@ -105,6 +113,7 @@ export const PageLayout = ({ pageContext, location, children }) => {
               <li><Link to="/komunismus-v-cesku/">Komunismus v Česku</Link></li>
               <li><Link to="/porevolucni-kscm/">Porevoluční KSČM</Link></li>
               <li><Link to="/predstavitele-kscm/">Představitelé KSČM</Link></li>
+              <li><Link to="/knihy/">Knihy</Link></li>
             </ul>
           </nav>
           <section
@@ -112,11 +121,28 @@ export const PageLayout = ({ pageContext, location, children }) => {
               [styles.sectionPlain]: !frontmatter.theme,
             })}
           >
-            {children}
+            <AffiliateSourceContext.Provider value={pathToSid(PATHNAME)}>
+              <MDXProvider components={MDX_COMPONENTS}>{children}</MDXProvider>
+              <PageBooks pathname={PATHNAME} />
+            </AffiliateSourceContext.Provider>
           </section>
         </main>
         <footer className={styles.footer}>
-          <small>Podporujeme: <a href="https://www.nasdilejneztozakazou.cz/">Sdílejte, než to zakážou! pravá tvář Andreje Babiše</a> a <a href="https://www.petletzpet.cz/">Největší přešlapy bývalého prezidenta</a></small>
+          <small>
+            Důvěryhodné zdroje:{" "}
+            {RESOURCES.map((item, index) => (
+              <React.Fragment key={item.url}>
+                {index > 0 && " · "}
+                <a href={item.url}>{item.name}</a>
+              </React.Fragment>
+            ))}
+          </small>
+          <small>
+            Odkazy na <Link to="/knihy/">knihy</Link> vedou do knihkupectví Knihy
+            Dobrovský a jsou partnerské: když přes ně knihu koupíte, dostaneme
+            malou provizi. Cena se pro vás nemění.
+          </small>
+          <small>Podporujeme: <a href="https://www.nasdilejneztozakazou.cz/">Sdílejte, než to zakážou! Kauzy Andreje Babiše</a> a <a href="https://www.petletzpet.cz/">Největší přešlapy bývalého prezidenta</a></small>
         </footer>
       </div>
     </>
