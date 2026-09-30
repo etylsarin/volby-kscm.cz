@@ -1,54 +1,29 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal starter
-</h1>
+# volby-kscm.cz
 
-## 🚀 Quick start
+**Komunisti z kola ven** — web o KSČM, jejích představitelích a o tom, co komunistický režim v Československu znamenal. Stránky jsou psané v MDX v [src/pages/](./src/pages/), vzhled a menu v [src/components/page-layout.tsx](./src/components/page-layout.tsx).
 
-1.  **Create a Gatsby site.**
+Web běží na [Gatsby](https://www.gatsbyjs.com/) a je nasazený na GitHub Pages (doména v [static/CNAME](./static/CNAME), aby ji každé nasazení zachovalo). Sesterské weby: [nasdilejneztozakazou.cz](https://www.nasdilejneztozakazou.cz/) a [petletzpet.cz](https://www.petletzpet.cz/).
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+## Knihy
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+- Seznam knih je v [src/data/books.json](./src/data/books.json): odkaz do Knih Dobrovský, vlastní popis, skupina na stránce `/knihy/` a `topics` = cesty stránek, kde se kniha objeví v bloku „Knihy k tématu“.
+- V textu stránek lze na knihu odkázat komponentou `<BookLink id="milada-horakova" />` (vypíše název) nebo `<BookLink id="…">vlastní text</BookLink>`. Neznámé `id` shodí build.
+- Stránka [src/pages/knihy.mdx](./src/pages/knihy.mdx) vykresluje celý seznam komponentou `<BookList />`.
 
-2.  **Start developing.**
+## Partnerský program Knih Dobrovský
 
-    Navigate into your new site’s directory and start it up.
+Stejné nastavení jako na nasdilejneztozakazou.cz: program běží přes **CJ (Commission Junction)**. CJ přiděluje ID (`CJ_PID`) každému webu zvlášť — přidejte volby-kscm.cz jako další web ve stejném účtu CJ, doplňte `CJ_PID` a `CJ_AID` v [src/data/affiliate.ts](./src/data/affiliate.ts) a web znovu nasaďte. Do té doby vedou odkazy přímo do obchodu. Odkazy mají `rel="sponsored"` a kliky se v Google Analytics zaznamenávají jako událost `affiliate_click`.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+## Důvěryhodné zdroje
 
-3.  **Open the code and start customizing!**
+Seznam doporučených webů v patičce je v [src/data/resources.ts](./src/data/resources.ts) (stejný jako na sesterských webech).
 
-    Your site is now running at http://localhost:8000!
+## Vývoj
 
-    Edit `src/pages/index.js` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal)
+```shell
+yarn install
+yarn develop   # http://localhost:8000
+yarn build     # produkční build do public/
+yarn serve     # náhled produkčního buildu
+yarn deploy    # čistý build + publikace na gh-pages
+```
