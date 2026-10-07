@@ -9,6 +9,23 @@ import { BookLink, BookList, PageBooks } from "./books";
 import { RESOURCES } from "../data/resources";
 
 import * as styles from "./page-layout.module.scss";
+import uvodHero from "../images/prazske-jaro-1968.avif";
+import ideologieHero from "../images/marx-lenin-stalin.avif";
+import komunismusHero from "../images/hranice-cssr.avif";
+import porevolucniHero from "../images/sametova-revoluce.avif";
+import predstaviteleHero from "../images/vojtech-filip.avif";
+
+// A themed page's hero photo is a CSS background (see the hero mixin), which
+// the browser would only find once the stylesheet has loaded. It is the
+// page's largest paint, so it is preloaded with the HTML instead. Browsers
+// without AVIF skip the preload and take WebP or JPEG from image-set().
+const HERO_IMAGES = {
+  uvod: uvodHero,
+  ideologie: ideologieHero,
+  "komunismus-v-cesku": komunismusHero,
+  "porevolucni-kscm": porevolucniHero,
+  "predstavitele-kscm": predstaviteleHero,
+};
 
 // Utility pages that Google crawls but must never index: the 404 handler
 // (served with a 200 by GitHub Pages) and the empty app shell that
@@ -49,6 +66,7 @@ export const PageLayout = ({ pageContext, location, children }) => {
     ? PATHNAME
     : `${PATHNAME}/`;
   const PAGE_URL = new URL(CANONICAL_PATH, siteMetadata.siteUrl).href;
+  const HERO = HERO_IMAGES[frontmatter.theme];
 
   return (
     <>
@@ -100,13 +118,26 @@ export const PageLayout = ({ pageContext, location, children }) => {
             content: DESC,
           },
         ]}
-        link={[{ rel: `canonical`, href: PAGE_URL }]}
+        link={[
+          { rel: `canonical`, href: PAGE_URL },
+          ...(HERO
+            ? [
+                {
+                  rel: `preload`,
+                  as: `image`,
+                  href: HERO,
+                  type: `image/avif`,
+                  fetchpriority: `high`,
+                },
+              ]
+            : []),
+        ]}
       />
       <div className={styles.page}>
         <main className={styles.main}>
           <nav className={styles.menu}>
-            <input type="checkbox" id="swith" />
-            <label htmlFor="swith" aria-label="Menu" />
+            <input type="checkbox" id="swith" aria-label="Menu" />
+            <label htmlFor="swith" />
             <ul>
               <li><Link to="/">Úvod</Link></li>
               <li><Link to="/ideologie/">Ideologie</Link></li>

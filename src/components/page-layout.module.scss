@@ -138,59 +138,41 @@ body {
   }
 }
 
-:global(.uvod) {
-  background: linear-gradient(
-        -180deg,
-        transparent 100px,
-        #000 400px,
-        #fff 400px
+// Hero photo behind the page heading, faded into the black band under the
+// title. The first declaration is the JPEG fallback for browsers without
+// image-set(); the rest pick AVIF or WebP, a fraction of the JPEG's size.
+@mixin hero($image) {
+  $fade: linear-gradient(-180deg, transparent 100px, #000 400px, #fff 400px)
+    left top no-repeat;
+
+  background: $fade, url("../images/#{$image}.jpeg") center -100px no-repeat;
+  background: $fade,
+    image-set(
+        url("../images/#{$image}.avif") type("image/avif"),
+        url("../images/#{$image}.webp") type("image/webp"),
+        url("../images/#{$image}.jpeg") type("image/jpeg")
       )
-      left top no-repeat,
-    url("../images/prazske-jaro-1968.jpeg") center -100px no-repeat;
+      center -100px no-repeat;
+}
+
+:global(.uvod) {
+  @include hero("prazske-jaro-1968");
 }
 
 :global(.ideologie) {
-  background: linear-gradient(
-        -180deg,
-        transparent 100px,
-        #000 400px,
-        #fff 400px
-      )
-      left top no-repeat,
-    url("../images/marx-lenin-stalin.jpeg") center -100px no-repeat;
+  @include hero("marx-lenin-stalin");
 }
 
 :global(.komunismus-v-cesku) {
-  background: linear-gradient(
-        -180deg,
-        transparent 100px,
-        #000 400px,
-        #fff 400px
-      )
-      left top no-repeat,
-    url("../images/hranice-cssr.jpeg") center -100px no-repeat;
+  @include hero("hranice-cssr");
 }
 
 :global(.porevolucni-kscm) {
-  background: linear-gradient(
-        -180deg,
-        transparent 100px,
-        #000 400px,
-        #fff 400px
-      )
-      left top no-repeat,
-    url("../images/sametova-revoluce.jpeg") center -100px no-repeat;
+  @include hero("sametova-revoluce");
 }
 
 :global(.predstavitele-kscm) {
-  background: linear-gradient(
-        -180deg,
-        transparent 100px,
-        #000 400px,
-        #fff 400px
-      )
-      left top no-repeat,
-    url("../images/vojtech-filip.jpeg") center -100px no-repeat;
+  @include hero("vojtech-filip");
 }
 
 @media (min-width: 1141px) {
@@ -228,8 +210,20 @@ body {
   .menu {
     position: fixed;
 
+    // Visually hidden but still focusable, so the menu opens from the
+    // keyboard and screen readers announce the toggle.
     > input {
-      display: none;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    > input:focus-visible ~ label {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
     }
 
     > label {
